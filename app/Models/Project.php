@@ -18,4 +18,10 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function verticals()
+    {
+        return $this->belongsToMany(Vertical::class)
+            ->withTimestamps();
+    }
 }
