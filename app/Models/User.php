@@ -38,6 +38,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Project[] $projects
+ * @property-read int|null $projects_count
+ * @property-read \App\Models\Team $team
  */
 class User extends Authenticatable
 {
