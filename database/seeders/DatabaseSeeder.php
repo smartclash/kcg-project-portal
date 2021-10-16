@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Project;
 use App\Models\User;
+use App\Models\Vertical;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $students = User::factory()->count(150)->student()->create();
         $mentors = User::factory()->count(30)->mentor()->create();
         $heads = User::factory()->count(5)->head()->create();
-        $admin = user::factory()->count(3)->admin()->create();
+        $admin = User::factory()->count(3)->admin()->create();
+
+        $verticals = Vertical::factory()->count(20)->create();
     }
 }
