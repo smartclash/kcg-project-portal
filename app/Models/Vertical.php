@@ -14,6 +14,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Vertical newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vertical query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\VerticalFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vertical whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vertical whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vertical whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vertical whereUpdatedAt($value)
  */
 class Vertical extends Model
 {

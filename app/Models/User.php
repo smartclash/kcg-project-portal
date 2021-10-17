@@ -41,6 +41,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Project[] $projects
  * @property-read int|null $projects_count
  * @property-read \App\Models\Team $team
+ * @property int|null $team_id
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTeamId($value)
  */
 class User extends Authenticatable
 {

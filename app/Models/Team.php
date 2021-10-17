@@ -17,6 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Team newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property int|null $project_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
  */
 class Team extends Model
 {
