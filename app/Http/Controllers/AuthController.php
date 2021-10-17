@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function googleRedirect()
     {
         return \Socialite::driver('google')->redirect();
@@ -15,12 +20,12 @@ class AuthController extends Controller
     {
         $user = \Socialite::driver('google')->user();
 
-        return [
-            'id' => $user->getId(),
-            'nickname' => $user->getNickname(),
+        $user = User::whereEmail($user->getEmail())->firstOrCreate([
             'name' => $user->getName(),
-            'email' => $user->getEmail(),
-            'avatar' => $user->getAvatar(),
-        ];
+            'email' => $user->getEmail()
+        ]);
+
+        \Auth::login($user, true);
+        return $user;
     }
 }

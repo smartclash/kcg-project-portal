@@ -55,17 +55,6 @@ class User extends Authenticatable
         'name',
         'type',
         'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
     ];
 
     /**
@@ -75,7 +64,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'type' => UserType::class,
-        'email_verified_at' => 'datetime',
     ];
 
     public function projects()
