@@ -18,7 +18,7 @@ class StudentOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if (\Auth::user()->type->value === UserType::Student) {
+        if (\Auth::user()->type->is(UserType::Student())) {
             return $next($request);
         }
 

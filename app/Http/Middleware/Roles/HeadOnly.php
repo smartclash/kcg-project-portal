@@ -18,7 +18,7 @@ class HeadOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if (\Auth::user()->type->value === UserType::Head) {
+        if (\Auth::user()->type->is(UserType::Head())) {
             return $next($request);
         }
 

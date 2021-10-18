@@ -18,7 +18,7 @@ class MentorOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if (\Auth::user()->type->value === UserType::Mentor) {
+        if (\Auth::user()->type->is(UserType::Mentor())) {
             return $next($request);
         }
 

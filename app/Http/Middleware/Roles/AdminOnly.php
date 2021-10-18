@@ -18,7 +18,7 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next)
     {
-        if (\Auth::user()->type->value === UserType::Admin) {
+        if (\Auth::user()->type->is(UserType::Admin())) {
             return $next($request);
         }
 
