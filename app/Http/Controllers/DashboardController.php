@@ -12,7 +12,7 @@ class DashboardController extends Controller
             case UserType::Student:
                 return 'Student';
             case UserType::Mentor:
-                return 'Mentor';
+                return redirect()->route('mentor.dashboard');
             case UserType::Head:
                 return 'Head';
             case UserType::Admin:

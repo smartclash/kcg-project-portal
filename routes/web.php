@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('auth/google', [\App\Http\Controllers\AuthController::class, 'googleRedirect']);
+Route::get('auth/google', [\App\Http\Controllers\AuthController::class, 'googleRedirect'])->name('login');
 Route::get('auth/google/callback', [\App\Http\Controllers\AuthController::class, 'googleCallback']);
 
-Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard');
+Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'show'])->name('home');
+
+Route::middleware(['auth', 'only.mentor'])->prefix('mentor')->group(function () {
+    Route::get('dashboard', [\App\Http\Controllers\Mentor\DashboardController::class, 'show'])
+        ->name('mentor.dashboard');
+});
 
 Route::view('/', 'welcome');
