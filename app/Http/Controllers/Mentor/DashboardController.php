@@ -9,6 +9,6 @@ class DashboardController extends Controller
 {
     public function show()
     {
-        return ['hello' => 'world'];
+        return view('mentor.dashboard');
     }
 }
