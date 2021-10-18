@@ -16,8 +16,8 @@ class CreateSubmissionsTable extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->string('file');
-            $table->multiLineString('content');
-            $table->bigInteger('team_id')->nullable();
+            $table->string('content');
+            $table->bigInteger('track_id')->nullable();
             $table->timestamps();
         });
     }
