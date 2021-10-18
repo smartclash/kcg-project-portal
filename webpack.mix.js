@@ -12,4 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/tinymce.js', 'public/js')
+    .sass('resources/css/tinymce.sass', 'public/css')
     .sass('resources/css/app.sass', 'public/css');

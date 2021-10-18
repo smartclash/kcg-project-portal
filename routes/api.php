@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('image/upload', function (Request $request) {
+    Log::info('Got files: ' . $request->files->count());
+    return [
+        'location' => '/favicon.ico'
+    ];
+})->name('image.upload');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
