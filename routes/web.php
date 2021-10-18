@@ -23,4 +23,12 @@ Route::middleware(['auth', 'only.mentor'])->prefix('mentor')->group(function () 
         ->name('mentor.dashboard');
 });
 
+Route::middleware('auth')->prefix('projects')->group(function () {
+    Route::get('create', [\App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
+
+    Route::prefix('{project}/tracks')->group(function () {
+        Route::get('create', [\App\Http\Controllers\TrackController::class, 'create'])->name('track.create');
+    });
+});
+
 Route::view('/', 'welcome');
