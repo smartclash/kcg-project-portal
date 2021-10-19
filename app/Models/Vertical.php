@@ -28,8 +28,13 @@ class Vertical extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class)
+            ->withTimestamps();
     }
 }
