@@ -24,6 +24,7 @@ Route::middleware(['auth', 'only.mentor'])->prefix('mentor')->group(function () 
 });
 
 Route::middleware('auth')->prefix('projects')->group(function () {
+    Route::get('/', [\App\Http\Controllers\ProjectController::class, 'list'])->name('project.list');
     Route::get('create', [\App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
 
     Route::post('create', [\App\Http\Controllers\ProjectController::class, 'handleCreate']);

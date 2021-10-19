@@ -34,4 +34,13 @@ class ProjectController extends Controller
 
         return $project;
     }
+
+    public function list()
+    {
+        // TODO: Show all projects for students.
+        //  and mentor projects for mentors.
+        return view('projects.list')->with([
+            'projects' => \Auth::user()->projects
+        ]);
+    }
 }
