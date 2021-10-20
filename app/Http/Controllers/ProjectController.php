@@ -43,4 +43,13 @@ class ProjectController extends Controller
             'projects' => \Auth::user()->projects
         ]);
     }
+
+    public function show(Project $project)
+    {
+        // TODO: Hide for other mentors.
+        //  Show selection button for students
+        return view('projects.show')->with([
+            'project' => $project
+        ]);
+    }
 }

@@ -25,11 +25,13 @@ Route::middleware(['auth', 'only.mentor'])->prefix('mentor')->group(function () 
 
 Route::middleware('auth')->prefix('projects')->group(function () {
     Route::get('/', [\App\Http\Controllers\ProjectController::class, 'list'])->name('project.list');
+    Route::get('/{project}', [\App\Http\Controllers\ProjectController::class, 'show'])->name('project.show');
     Route::get('create', [\App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
 
     Route::post('create', [\App\Http\Controllers\ProjectController::class, 'handleCreate']);
 
     Route::prefix('{project}/tracks')->group(function () {
+        Route::get('/', [\App\Http\Controllers\TrackController::class, 'list'])->name('track.list');
         Route::get('create', [\App\Http\Controllers\TrackController::class, 'create'])->name('track.create');
     });
 });
