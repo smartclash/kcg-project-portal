@@ -9,8 +9,17 @@
                 <div class="content">
                     {!! $project->content !!}
                 </div>
+
+                <hr />
+
+                <div class="tags">
+                    @foreach($project->verticals as $vertical)
+                        <span class="tag">{{ $vertical->name }}</span>
+                    @endforeach
+                </div>
             </div>
         </section>
+
         <section class="section">
             <div class="buttons">
                 <a href="{{ route('track.create', $project) }}" class="button is-outlined is-primary">Create Track</a>

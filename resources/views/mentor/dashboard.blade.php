@@ -9,7 +9,7 @@
                     <a href="{{ route('project.create') }}" class="button is-primary">Create Project</a>
                 </div>
                 <div class="control">
-                    <a href="#" class="button is-secondary">Show Projects</a>
+                    <a href="{{ route('project.list') }}" class="button is-secondary">Show Projects</a>
                 </div>
             </div>
         </section>
