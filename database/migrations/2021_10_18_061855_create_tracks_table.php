@@ -23,7 +23,7 @@ class CreateTracksTable extends Migration
 
             $table->boolean('locked');
 
-            $table->bigInteger('team_id')->nullable();
+            $table->bigInteger('project_id')->nullable();
             $table->timestamps();
         });
     }

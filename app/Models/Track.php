@@ -14,12 +14,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $due_date
  * @property string|null $lock_date
  * @property int $locked
- * @property int|null $team_id
+ * @property int|null $project_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Project|null $project
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Submission[] $submissions
  * @property-read int|null $submissions_count
- * @property-read \App\Models\Team|null $team
  * @method static \Illuminate\Database\Eloquent\Builder|Track newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Track newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Track query()
@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereLockDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereLocked($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Track whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Track whereProjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereUpdatedAt($value)
  * @mixin \Eloquent
  */
@@ -38,9 +38,9 @@ class Track extends Model
 {
     use HasFactory;
 
-    public function team()
+    public function project()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function submissions()

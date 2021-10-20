@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read int|null $members_count
  * @property-read \App\Models\Project|null $project
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Track[] $tracks
- * @property-read int|null $tracks_count
  * @method static \Illuminate\Database\Eloquent\Builder|Team newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team query()
@@ -40,10 +38,5 @@ class Team extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
-    }
-
-    public function tracks()
-    {
-        return $this->hasMany(Track::class);
     }
 }
