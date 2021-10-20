@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserType;
 use App\Models\Project;
 use App\Models\Vertical;
 use Illuminate\Http\Request;
@@ -10,7 +11,8 @@ class ProjectController extends Controller
 {
     public function create()
     {
-        //TODO: Allow only mentors to do it
+        $this->authorize('create', Project::class);
+
         return view('projects.create')->with([
             'verticals' => Vertical::all()
         ]);
@@ -18,7 +20,8 @@ class ProjectController extends Controller
 
     public function handleCreate()
     {
-        //TODO: Allow only mentors to do it
+        $this->authorize('create', Project::class);
+
         \request()->validate([
             'name' => 'required',
             'content' => 'required'
@@ -37,17 +40,27 @@ class ProjectController extends Controller
 
     public function list()
     {
-        // TODO: Show all projects for students.
-        //  and mentor projects for mentors.
+        $projects = \Auth::user()->type->is(UserType::Mentor())
+            ? \Auth::user()->projects
+            : Project::all();
+
+        if (\Auth::user()->team) {
+            if (\Auth::user()->team->project) {
+                // If the user has a team, and team has already selected a project,
+                // then redirect them to that particular project's page.
+                return redirect()->route('project.show', \Auth::user()->team->project_id);
+            }
+        }
+
         return view('projects.list')->with([
-            'projects' => \Auth::user()->projects
+            'projects' => $projects
         ]);
     }
 
     public function show(Project $project)
     {
-        // TODO: Hide for other mentors.
-        //  Show selection button for students
+        $this->authorize('view', $project);
+
         return view('projects.show')->with([
             'project' => $project,
             'tracks' => $project->tracks

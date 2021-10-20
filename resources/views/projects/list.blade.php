@@ -29,5 +29,11 @@
                 </div>
             @endforeach
         </section>
+
+        <section class="section">
+            @can('create', \App\Models\Project::class)
+                <a href="{{ route('project.create') }}" class="button is-primary is-outlined is-fullwidth">Create Project</a>
+            @endcan
+        </section>
     </div>
 @endsection
