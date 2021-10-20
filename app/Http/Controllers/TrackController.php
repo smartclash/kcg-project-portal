@@ -22,6 +22,16 @@ class TrackController extends Controller
         return view('tracks.list');
     }
 
+    public function show(Project $project, Track $track)
+    {
+        // TODO: Make it available to only mentor
+        //  and the students who selected
+        return view('tracks.show')->with([
+            'project' => $project,
+            'track' => $track,
+        ]);
+    }
+
     public function handleCreate(Project $project)
     {
         //TODO: Make it available only to mentors

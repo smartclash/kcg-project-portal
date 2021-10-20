@@ -29,7 +29,7 @@
                         <nav class="level">
                             <div class="level-left">
                                 <div class="level-item">
-                                    <a href="#" class="subtitle has-text-link">
+                                    <a href="{{ route('track.show', [$project, $track]) }}" class="subtitle has-text-link">
                                         {{ $track->name }} &longrightarrow;
                                     </a>
                                 </div>
