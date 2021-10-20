@@ -33,6 +33,14 @@ Route::middleware('auth')->prefix('projects')->group(function () {
     Route::prefix('{project}/tracks')->group(function () {
         Route::get('/', [\App\Http\Controllers\TrackController::class, 'list'])->name('track.list');
         Route::get('create', [\App\Http\Controllers\TrackController::class, 'create'])->name('track.create');
+
+        Route::prefix('{track:id}/submissions')->group(function () {
+            Route::get('create', [\App\Http\Controllers\SubmissionController::class, 'create'])
+                ->name('submission.create');
+
+            Route::post('create', [\App\Http\Controllers\SubmissionController::class, 'handleCreate']);
+        });
+
         Route::get('/{track:id}', [\App\Http\Controllers\TrackController::class, 'show'])->name('track.show');
 
         Route::post('create', [\App\Http\Controllers\TrackController::class, 'handleCreate']);

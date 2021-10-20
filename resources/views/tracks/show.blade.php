@@ -38,7 +38,7 @@
         </section>
 
         <section class="section">
-            <a href="#" class="button is-primary is-outlined">Create Submission</a>
+            <a href="{{ route('submission.create', [$project, $track]) }}" class="button is-primary is-outlined">Create Submission</a>
         </section>
     </div>
 @endsection
