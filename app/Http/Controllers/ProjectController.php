@@ -49,7 +49,8 @@ class ProjectController extends Controller
         // TODO: Hide for other mentors.
         //  Show selection button for students
         return view('projects.show')->with([
-            'project' => $project
+            'project' => $project,
+            'tracks' => $project->tracks
         ]);
     }
 }

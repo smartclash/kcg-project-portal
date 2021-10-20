@@ -33,6 +33,8 @@ Route::middleware('auth')->prefix('projects')->group(function () {
     Route::prefix('{project}/tracks')->group(function () {
         Route::get('/', [\App\Http\Controllers\TrackController::class, 'list'])->name('track.list');
         Route::get('create', [\App\Http\Controllers\TrackController::class, 'create'])->name('track.create');
+
+        Route::post('create', [\App\Http\Controllers\TrackController::class, 'handleCreate']);
     });
 });
 

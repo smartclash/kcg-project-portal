@@ -38,6 +38,20 @@ class Track extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'locked',
+        'content',
+        'due_date',
+        'lock_date',
+        'project_id',
+    ];
+
+    protected $casts = [
+        'due_date' => 'datetime',
+        'lock_date' => 'datetime'
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
