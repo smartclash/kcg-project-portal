@@ -49,7 +49,7 @@ class Project extends Model
 
     public function mentor()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function verticals()
