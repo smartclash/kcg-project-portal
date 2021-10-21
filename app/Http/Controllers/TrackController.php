@@ -5,27 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Track;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class TrackController extends Controller
 {
     public function create(Project $project)
     {
-        //TODO: Make it available only to mentors
+        $this->authorize('create', [Track::class, $project]);
+
         return view('tracks.create')->with('project', $project);
     }
 
     public function list(Project $project)
     {
-        //TODO: Make it available only to mentors
-        // and the students who selected this project
+        $this->authorize('viewAny', [Track::class, $project]);
+
         return view('tracks.list');
     }
 
     public function show(Project $project, Track $track)
     {
-        // TODO: Make it available to only mentor
-        //  and the students who selected
+        $this->authorize('view', [$track, $project]);
+
         return view('tracks.show')->with([
             'project' => $project,
             'track' => $track,
@@ -34,7 +34,8 @@ class TrackController extends Controller
 
     public function handleCreate(Project $project)
     {
-        //TODO: Make it available only to mentors
+        $this->authorize('create', [Track::class, $project]);
+
         \request()->validate([
             'name' => 'required|string',
             'content' => 'required|string',
