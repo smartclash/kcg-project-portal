@@ -10,7 +10,7 @@ class DashboardController extends Controller
     {
         switch (\Auth::user()->type->value) {
             case UserType::Student:
-                return 'Student';
+                return redirect()->route('student.dashboard');
             case UserType::Mentor:
                 return redirect()->route('mentor.dashboard');
             case UserType::Head:

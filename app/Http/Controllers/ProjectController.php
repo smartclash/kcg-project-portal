@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\UserType;
 use App\Models\Project;
 use App\Models\Vertical;
-use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {

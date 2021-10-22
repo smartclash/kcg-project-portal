@@ -23,6 +23,11 @@ Route::middleware(['auth', 'only.mentor'])->prefix('mentor')->group(function () 
         ->name('mentor.dashboard');
 });
 
+Route::middleware(['auth', 'only.student'])->prefix('student')->group(function() {
+    Route::get('dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'show'])
+        ->name('student.dashboard');
+});
+
 Route::middleware('auth')->prefix('projects')->group(function () {
     Route::get('/', [\App\Http\Controllers\ProjectController::class, 'list'])->name('project.list');
     Route::get('create', [\App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
