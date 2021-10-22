@@ -28,6 +28,11 @@ Route::middleware(['auth', 'only.student'])->prefix('student')->group(function()
         ->name('student.dashboard');
 });
 
+Route::middleware('auth')->prefix('teams')->group(function () {
+    Route::get('create', [\App\Http\Controllers\TeamController::class, 'create'])
+        ->name('team.create');
+});
+
 Route::middleware('auth')->prefix('projects')->group(function () {
     Route::get('/', [\App\Http\Controllers\ProjectController::class, 'list'])->name('project.list');
     Route::get('create', [\App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
