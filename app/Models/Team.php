@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereProjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $user_id
+ * @property-read \App\Models\User $leader
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserId($value)
  */
 class Team extends Model
 {
@@ -38,5 +41,10 @@ class Team extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function leader()
+    {
+        return $this->belongsTo(User::class);
     }
 }
