@@ -25,4 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('user/search', function (Request $request) {
+        return \App\Models\User::search($request->get('query'))->get();
+    });
 });
