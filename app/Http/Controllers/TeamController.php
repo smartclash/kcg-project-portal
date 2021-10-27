@@ -8,13 +8,13 @@ class TeamController extends Controller
 {
     public function create()
     {
-        // TODO: only for students, should not be in any team or own a team
+        $this->authorize('create', Team::class);
         return view('teams.create');
     }
 
     public function handleCreate()
     {
-        // TODO: only for students, should not be in any team or own a team
+        $this->authorize('create', Team::class);
         \request()->validate([ 'name' => 'required' ]);
 
         return Team::create([
