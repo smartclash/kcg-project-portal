@@ -31,6 +31,8 @@ Route::middleware(['auth', 'only.student'])->prefix('student')->group(function()
 Route::middleware('auth')->prefix('teams')->group(function () {
     Route::get('create', [\App\Http\Controllers\TeamController::class, 'create'])
         ->name('team.create');
+
+    Route::post('create', [\App\Http\Controllers\TeamController::class, 'handleCreate']);
 });
 
 Route::middleware('auth')->prefix('projects')->group(function () {

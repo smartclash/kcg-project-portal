@@ -33,6 +33,12 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'user_id',
+        'project_id'
+    ];
+
     public function members()
     {
         return $this->hasMany(User::class);
