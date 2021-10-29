@@ -36,6 +36,8 @@ Route::middleware('auth')->prefix('teams')->group(function () {
         Route::post('create', [\App\Http\Controllers\TeamController::class, 'handleAddMembers']);
     });
 
+    Route::get('{team}', [\App\Http\Controllers\TeamController::class, 'show'])
+        ->name('team.show');
     Route::get('create', [\App\Http\Controllers\TeamController::class, 'create'])
         ->name('team.create');
 

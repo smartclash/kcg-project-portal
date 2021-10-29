@@ -6,6 +6,16 @@ use App\Models\Team;
 
 class TeamController extends Controller
 {
+    public function show(Team $team)
+    {
+        $this->authorize('view', $team);
+
+        return view('teams.show')->with([
+            'team' => $team,
+            'project' => $team->project
+        ]);
+    }
+
     public function create()
     {
         $this->authorize('create', Team::class);

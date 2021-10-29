@@ -31,11 +31,15 @@ class TeamPolicy
      */
     public function view(User $user, Team $team)
     {
-        if ($user->team) {
-            return $user->team->id === $team->id;
+        if ($user->type->is(UserType::Student())) {
+            return $user->team_id == $team->id;
         }
 
-        return false;
+        if ($user->type->is(UserType::Mentor())) {
+            return $team->project->mentor->id == $user->id;
+        }
+
+        return $user->type->in([UserType::Head(), UserType::Admin()]);
     }
 
     /**

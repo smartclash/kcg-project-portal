@@ -13,6 +13,9 @@ class DashboardController extends Controller
             return redirect()->route('team.create');
         }
 
-        return view('student.dashboard');
+        $team = \Auth::user()->team;
+        return view('student.dashboard')->with([
+            'team' => $team
+        ]);
     }
 }
