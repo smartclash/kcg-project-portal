@@ -75,6 +75,10 @@ class User extends Authenticatable
         'type' => UserType::class,
     ];
 
+    protected $hidden = [
+        'remember_token'
+    ];
+
     public function projects()
     {
         return $this->hasMany(Project::class);

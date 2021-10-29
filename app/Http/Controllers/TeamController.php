@@ -17,9 +17,25 @@ class TeamController extends Controller
         $this->authorize('create', Team::class);
         \request()->validate([ 'name' => 'required' ]);
 
-        return Team::create([
+        $team = Team::create([
             'name' => request('name'),
             'user_id' => \Auth::id()
         ]);
+
+        \Auth::user()->team()->associate($team)->save();
+
+        return $team;
+    }
+
+    public function addMembers(Team $team)
+    {
+        return view('teams.members')->with([
+            'team' => $team
+        ]);
+    }
+
+    public function handleAddMembers(Team $team)
+    {
+        return request()->all();
     }
 }

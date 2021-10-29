@@ -14,19 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('image/upload', function (Request $request) {
-    Log::info('Got files: ' . $request->files->count());
-    return [
-        'location' => '/favicon.ico'
-    ];
-})->name('image.upload');
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
+    // TODO: Make this a separate controller class
     Route::post('user/search', function (Request $request) {
-        return \App\Models\User::search($request->get('query'))->get();
-    });
+        return \App\Models\User::search($request->get('query'))->get()
+            ->filter(function (\App\Models\User $user) use ($request) {
+                return !in_array($user->id, $request->get('except'), true)
+                    && $user->type->is(\App\Enums\UserType::Student())
+                    && !$user->team_id;
+            });
+    })->name('user.search');
 });
