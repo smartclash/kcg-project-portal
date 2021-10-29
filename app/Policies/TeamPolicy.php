@@ -88,4 +88,23 @@ class TeamPolicy
     {
         //
     }
+
+    public function addMembers(User $user, Team $team)
+    {
+        return $user->id == $team->user_id
+            && $team->members->count() < 3;
+    }
+
+    public function viewMembers(User $user, Team $team)
+    {
+        if ($user->type->is(UserType::Student())) {
+            return $user->team_id == $team->id;
+        }
+
+        if ($user->type->is(UserType::Mentor())) {
+            return $team->project->mentor->id == $user->id;
+        }
+
+        return $user->type->in([UserType::Head(), UserType::Admin()]);
+    }
 }

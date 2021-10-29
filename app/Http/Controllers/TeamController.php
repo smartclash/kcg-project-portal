@@ -29,6 +29,8 @@ class TeamController extends Controller
 
     public function addMembers(Team $team)
     {
+        $this->authorize('addMembers', $team);
+
         return view('teams.members')->with([
             'team' => $team
         ]);
@@ -36,6 +38,8 @@ class TeamController extends Controller
 
     public function handleAddMembers(Team $team)
     {
+        $team->authorize('addMembers', $team);
+
         return request()->all();
     }
 }
