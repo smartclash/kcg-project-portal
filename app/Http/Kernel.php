@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\OnlyDevelopment;
 use App\Http\Middleware\Roles\AdminOnly;
 use App\Http\Middleware\Roles\HeadOnly;
 use App\Http\Middleware\Roles\MentorOnly;
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'only.head' => HeadOnly::class,
         'only.mentor' => MentorOnly::class,
         'only.student' => StudentOnly::class,
+        'only.development' => OnlyDevelopment::class,
     ];
 }

@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('auth/google', [\App\Http\Controllers\AuthController::class, 'googleRedirect'])->name('login');
 Route::get('auth/google/callback', [\App\Http\Controllers\AuthController::class, 'googleCallback']);
 
+Route::prefix('fake/auth')->middleware(['only.development', 'guest'])->group(function () {
+    Route::get('mentor', [\App\Http\Controllers\Test\FakeAuthController::class, 'asMentor']);
+    Route::get('admin', [\App\Http\Controllers\Test\FakeAuthController::class, 'asAdmin']);
+    Route::get('hod/cse', [\App\Http\Controllers\Test\FakeAuthController::class, 'asCSEHead']);
+    Route::get('hod/ece', [\App\Http\Controllers\Test\FakeAuthController::class, 'asECEHead']);
+});
+
 Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'show'])->name('home');
 
 Route::middleware(['auth', 'only.mentor'])->prefix('mentor')->group(function () {
