@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('auth/google', [\App\Http\Controllers\AuthController::class, 'googleRedirect'])->name('login');
 Route::get('auth/google/callback', [\App\Http\Controllers\AuthController::class, 'googleCallback']);
 
+Route::get('auth/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
+
 Route::prefix('fake/auth')->middleware(['only.development', 'guest'])->group(function () {
     Route::get('mentor', [\App\Http\Controllers\Test\FakeAuthController::class, 'asMentor']);
     Route::get('admin', [\App\Http\Controllers\Test\FakeAuthController::class, 'asAdmin']);
@@ -75,4 +77,4 @@ Route::middleware('auth')->prefix('projects')->group(function () {
     });
 });
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('index');

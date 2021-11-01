@@ -8,7 +8,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->except('logout');
     }
 
     public function googleRedirect()
@@ -27,5 +27,11 @@ class AuthController extends Controller
 
         \Auth::login($user, true);
         return redirect()->home();
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect()->route('index');
     }
 }

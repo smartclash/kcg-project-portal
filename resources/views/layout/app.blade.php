@@ -10,6 +10,7 @@
     @yield('header')
 </head>
     <body class="antialiased">
+        @include('layout.navbar')
         @yield('content')
 
         <script src="{{ mix('js/app.js') }}"></script>
