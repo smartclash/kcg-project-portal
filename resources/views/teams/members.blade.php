@@ -3,6 +3,11 @@
 @section('content')
     <div class="container" x-data="initData()" x-init="queryUsers()">
         <section class="section" x-cloak>
+            <template x-if="users.length >= 2">
+                <div class="notification is-danger">
+                    Cannot add more members
+                </div>
+            </template>
             <div class="panel">
                 <p class="panel-heading">
                     Add members to {{ $team->name }}
@@ -16,13 +21,14 @@
                             x-model="query"
                             x-on:input.debounce.300ms="search()"
                             autocomplete="off"
+                            x-bind:disabled="users.length >= 2"
                         >
                     </div>
                 </div>
                 <div x-show="results.length > 0">
                     <template x-for="user in results">
                         <a class="panel-block" x-on:click.prevent="addUser(user)">
-                            <span x-text="user.email"></span>
+                            <span x-text="user.name + ' - ' + user.email.split('@')[0]"></span>
                         </a>
                     </template>
                 </div>
