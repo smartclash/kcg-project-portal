@@ -96,8 +96,12 @@
             },
             submit: async function (ref) {
                 ref.classList.add('is-loading');
-                confirm("submit");
-                // TODO: write submit logic
+
+                const result = await axios.post("{{ route('api.team.members.create', $team) }}", {
+                    users: this.users
+                });
+                console.log(result.data);
+
                 ref.classList.remove('is-loading');
             },
         });

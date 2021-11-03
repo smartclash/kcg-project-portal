@@ -21,4 +21,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('user/search', [\App\Http\Controllers\Api\SearchController::class, 'student'])
         ->name('user.search');
+    Route::post('teams/{team}/members', [\App\Http\Controllers\Api\TeamsController::class, 'addMembers'])
+        ->name('api.team.members.create');
 });

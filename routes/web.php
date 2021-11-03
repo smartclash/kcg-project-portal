@@ -48,8 +48,6 @@ Route::middleware('auth')->prefix('teams')->group(function () {
     Route::prefix('{team}/members')->group(function () {
         Route::get('create', [\App\Http\Controllers\TeamController::class, 'addMembers'])
             ->name('team.members.create');
-
-        Route::post('create', [\App\Http\Controllers\TeamController::class, 'handleAddMembers']);
     });
 });
 

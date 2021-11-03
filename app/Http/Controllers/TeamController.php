@@ -45,11 +45,4 @@ class TeamController extends Controller
             'team' => $team
         ]);
     }
-
-    public function handleAddMembers(Team $team)
-    {
-        $team->authorize('addMembers', $team);
-
-        return request()->all();
-    }
 }
