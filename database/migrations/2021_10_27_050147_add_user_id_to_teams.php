@@ -26,7 +26,7 @@ class AddUserIdToTeams extends Migration
     public function down()
     {
         Schema::table('teams', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->removeColumn('user_id');
         });
     }
 }
