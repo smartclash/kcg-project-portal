@@ -3,11 +3,19 @@
 @section('content')
     <div class="container">
         <section class="section">
-            <p class="title">Create Team</p>
-
             <div class="box">
-                <p>Person creating the team will be the team leader</p>
-
+                <p class="title">Join Team</p>
+                <p>
+                    If you just want to join a team, ask your team leader to create a team and then add you into it.
+                    No more action is required from your side.
+                </p>
+                <div class="divider">
+                    or
+                </div>
+                <p class="title">Create Team</p>
+                <p>
+                    If you create the team, you'll be the designated leader for it. You can add team members later
+                </p>
                 <form action="{{ route('team.create') }}" class="pt-4" method="post">
                     @csrf
 
@@ -25,34 +33,4 @@
             </div>
         </section>
     </div>
-@endsection
-
-@section('header')
-    @parent
-
-    <script>
-        const initData = () => ({
-            results: null,
-            query: null,
-            users: [],
-            search: async function () {
-                if (!this.query) {
-                    this.results = null;
-                    return this.results;
-                }
-
-                const res = await axios.post('/api/user/search', {
-                    params: { query: this.query }
-                });
-
-                this.results = res.data
-            },
-            addUser: function (user) {
-                this.users.push(user);
-            },
-            deleteUser: function (user) {
-                this.users = this.users.filter(obj => obj.email !== user.email);
-            }
-        });
-    </script>
 @endsection
