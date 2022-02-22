@@ -17,10 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $students = User::factory()->count(150)->student()->create();
-        $mentors = User::factory()->count(30)->mentor()->create();
+        $mentors = User::factory()->count(30)->mentor()->create()->each(function (User $theMentor) {
+            Project::factory()->count(10)->for($theMentor, 'mentor')->create();
+        });
         $heads = User::factory()->count(5)->head()->create();
         $admin = User::factory()->count(3)->admin()->create();
 
-        $verticals = Vertical::factory()->count(20)->create();
+        $verticals = Vertical::factory()->count(20)->has(Project::factory(), 'projects')->create();
     }
 }
