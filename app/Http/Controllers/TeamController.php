@@ -34,7 +34,7 @@ class TeamController extends Controller
 
         \Auth::user()->team()->associate($team)->save();
 
-        return $team;
+        return redirect()->route('team.show', $team);
     }
 
     public function addMembers(Team $team)
