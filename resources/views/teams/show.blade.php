@@ -20,7 +20,7 @@
                     </div>
                     @if(!$project)
                         <div class="level-item">
-                            <a href="{{ route('student.dashboard') }}" class="button is-info is-outlined">Select Project &longrightarrow;</a>
+                            <a href="{{ route('project.list') }}" class="button is-info is-outlined">Select Project &longrightarrow;</a>
                         </div>
                     @else
                         <div class="level-item">

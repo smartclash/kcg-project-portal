@@ -34,14 +34,14 @@ class ProjectController extends Controller
 
         $project->verticals()->attach(\request('verticals'));
 
-        return $project;
+        return redirect()->route('project.show', $project);
     }
 
     public function list()
     {
         $projects = \Auth::user()->type->is(UserType::Mentor())
             ? \Auth::user()->projects
-            : Project::all();
+            : Project::whereTeamId(null)->get();
 
         if (\Auth::user()->team) {
             if (\Auth::user()->team->project) {
