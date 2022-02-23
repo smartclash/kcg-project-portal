@@ -19,7 +19,10 @@ class TrackController extends Controller
     {
         $this->authorize('viewAny', [Track::class, $project]);
 
-        return view('tracks.list');
+        return view('tracks.list')->with([
+            'project' => $project,
+            'tracks' => $project->tracks
+        ]);
     }
 
     public function show(Project $project, Track $track)

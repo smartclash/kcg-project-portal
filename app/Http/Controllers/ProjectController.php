@@ -58,11 +58,22 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        $this->authorize('view', $project);
-
         return view('projects.show')->with([
             'project' => $project,
             'tracks' => $project->tracks
         ]);
+    }
+
+    public function select(Project $project)
+    {
+        $this->authorize('select', $project);
+
+        $team = \Auth::user()->team;
+
+        $project->team()->associate($team)->save();
+        $team->project()->associate($project)->save();
+
+        return redirect()->route('team.show', $team)
+            ->with(['success' => 'Project ' . $project->name . ' has been selected']);
     }
 }

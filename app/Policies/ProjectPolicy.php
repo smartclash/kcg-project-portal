@@ -96,4 +96,11 @@ class ProjectPolicy
     {
         //
     }
+
+    public function select(User $user, Project $project)
+    {
+        return $user->type->is(UserType::Student())
+            && is_null($user->team->project_id)
+            && is_null($project->team_id);
+    }
 }

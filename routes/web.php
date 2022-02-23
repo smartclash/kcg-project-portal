@@ -57,6 +57,8 @@ Route::middleware('auth')->prefix('projects')->group(function () {
     Route::get('/{project}', [\App\Http\Controllers\ProjectController::class, 'show'])->name('project.show');
 
     Route::post('create', [\App\Http\Controllers\ProjectController::class, 'handleCreate']);
+    Route::post('select/{project}', [\App\Http\Controllers\ProjectController::class, 'select'])
+        ->name('project.select');
 
     Route::prefix('{project}/tracks')->group(function () {
         Route::get('/', [\App\Http\Controllers\TrackController::class, 'list'])->name('track.list');
