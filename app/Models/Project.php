@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUserId($value)
  * @mixin \Eloquent
+ * @property int|null $team_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereTeamId($value)
  */
 class Project extends Model
 {
@@ -42,9 +44,13 @@ class Project extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'user_id' => 'int'
+    ];
+
     public function team()
     {
-        return $this->hasOne(Team::class);
+        return $this->belongsTo(Team::class, 'team_id', 'id');
     }
 
     public function mentor()

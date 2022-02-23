@@ -39,6 +39,10 @@ class Team extends Model
         'project_id'
     ];
 
+    protected $casts = [
+        'project_id' => 'int'
+    ];
+
     public function members()
     {
         return $this->hasMany(User::class);
